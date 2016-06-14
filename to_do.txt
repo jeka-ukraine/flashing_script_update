@@ -1,0 +1,31 @@
+to do
+	- разобраться в скрипте
+		+ разобраться в регулярке на примере возможных имён файла
+			- Car
+				- daily: rel-DAG.MFA2.C5.B2.Daily-5.1.1374_Images.tar
+				- release: rel-DAG.MFA2.Cars.MY18.C5.E005.Bhw.Release-5.3.1_Images.tar
+			- VAN
+				- daily: rel-DAG.MFA2.C5-Vans.E005.Bhw.Daily-5.0.237_Images.tar
+				- release: rel-DAG.MFA2.MY18.C5-Vans.E005.Bhw.Release-5.0.4_Images.tar
+			
+
+	- далее по списку проблем
+		Проблемы текущего скрипта:
+		- выбор диска
+			!+ есть но с ошибкой
+				- 
+		+ поддержку VAN архивов: VIP файлы лежат в VAN VIP папке 	
+		+ поддержку 0.1.0 в CAR
+		- запись в файлы: трейсы и скоупы
+			- сперва замонтировать нужный раздел
+				- mount -t ext4 /dev/'$DRIVE_NAME'9  /mnt/
+					- проверить команду mount в отдельности
+					- какой раздел монтировать?
+			- потом 
+				echo "line1
+				line2" >> append.txt
+
+		- проверка на владельца файла
+			- тест 
+				- если нет то выполнить ?
+		- sync

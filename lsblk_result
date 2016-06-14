@@ -1,0 +1,15 @@
+[user@arch Autogrator]$ lsblk -f
+NAME    FSTYPE LABEL    UUID                                 MOUNTPOINT
+sda                                                          
+└─sda1  ext4   root     b87a7a5f-cd0a-4706-bdb8-16079a86f916 /
+sdb                                                          
+├─sdb1  vfat   boot     84A4-5DF3                            
+├─sdb2                                                       
+├─sdb5  vfat   int_opt  84A4-E0E1                            
+├─sdb6  vfat   int_var  84B5-01B0                            
+├─sdb7  vfat   int_upd  84B6-20B5                            
+├─sdb8  ext4   lin_root 93ae5f87-383b-46f0-ba97-1a320c8a90d4 
+├─sdb9  ext4   lin_opt  de25db76-df17-49f4-b1f9-d0ebae3fbe96 
+├─sdb10 ext4   lin_var  29ca9985-0683-497b-888c-b2a34e4d5d34 
+└─sdb11 ext4   lin_upd  898d5049-4819-4bb7-9c82-30b62ec3e0ad 
+sr0
