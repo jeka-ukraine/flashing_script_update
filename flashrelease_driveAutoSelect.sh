@@ -61,18 +61,29 @@ sudo ./Autogrator.sh deploy --cardName Mfa2M2Emmcv${version} --device /dev/$DRIV
 ###added
 echo ""
 echo "============================"
-echo "Network setup..."
+echo "Network setup; User and Group of 'sshd' verification:"
 mount -t ext4 /dev/'$DRIVE_NAME'8  /mnt/
 echo "auto eth0    
 iface eth0 inet dhcp" >> /mnt/etc/network/interfaces 
+
+#check user and groop of sshd
+$SSHD_ROOT_NUMBER=$(ls -l /var/lib/ | grep sshd | grep -c sshd)
+if ! [ "$SSHD_ROOT_NUMBER" = "2" ]; then
+	chown root:root /var/lib/sshd -R
+	echo "sshd user and group were changed to root"
+else
+	echo "sshd user and group is OK"
+fi
+
+sync
 umount /dev/'$DRIVE_NAME'8
-echo "Network setup is done."
+echo "Network setup; User and Group of 'sshd' verification are done."
 echo "============================"
 
 
 echo ""
 echo "============================"
-echo "Adding scopes to trace..."
+echo "Adding scopes to 'default.sco'"
 mount -t ext4 /dev/'$DRIVE_NAME'9  /mnt/
 
 echo "VERSION 1.0
@@ -84,9 +95,17 @@ UIServerProcessIVI.* INFO
 UICockpit.HAL_Tuner.* WARN
 
 UICockpit.HAL_RUI.* DEBUG
-UICockpit.HAL_infotainment.TimeAndDateServiceDelegate WARN
-" >> /mnt/etc/trace/default.sco 
+UICockpit.HAL_infotainment.TimeAndDateServiceDelegate WARN" >> /mnt/etc/trace/default.sco 
+sync
 umount /dev/'$DRIVE_NAME'9
 echo "Scopes added."
 echo "============================"
+
+###added
+#check user and groop of sshd
+$SSHD_ROOT_NUMBER=$(ls -l /var/lib/ | grep sshd | grep -c sshd)
+if ! [ "$SSHD_ROOT_NUMBER" = "2" ]; then
+	chown root:root /var/lib/sshd -R
+fi
+
 
