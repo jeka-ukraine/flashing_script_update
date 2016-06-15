@@ -70,9 +70,9 @@ iface eth0 inet dhcp" >> /mnt/etc/network/interfaces
 $SSHD_ROOT_NUMBER=$(ls -l /var/lib/ | grep sshd | grep -c sshd)
 if ! [ "$SSHD_ROOT_NUMBER" = "2" ]; then
 	chown root:root /var/lib/sshd -R
-	echo "sshd user and group were changed to root"
+	echo "sshd user and group were changed to root."
 else
-	echo "sshd user and group is OK"
+	echo "sshd user and group were correct."
 fi
 
 sync
@@ -80,7 +80,7 @@ umount /dev/'$DRIVE_NAME'8
 echo "Network setup; User and Group of 'sshd' verification are done."
 echo "============================"
 
-
+#adding scopes
 echo ""
 echo "============================"
 echo "Adding scopes to 'default.sco'"
@@ -101,11 +101,5 @@ umount /dev/'$DRIVE_NAME'9
 echo "Scopes added."
 echo "============================"
 
-###added
-#check user and groop of sshd
-$SSHD_ROOT_NUMBER=$(ls -l /var/lib/ | grep sshd | grep -c sshd)
-if ! [ "$SSHD_ROOT_NUMBER" = "2" ]; then
-	chown root:root /var/lib/sshd -R
-fi
 
 
