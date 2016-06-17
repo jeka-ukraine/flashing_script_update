@@ -69,7 +69,7 @@ iface eth0 inet dhcp" >> /mnt/etc/network/interfaces
 #check user and groop of sshd
 $SSHD_ROOT_NUMBER=$(ls -l /var/lib/ | grep sshd | grep -c sshd)
 if ! [ "$SSHD_ROOT_NUMBER" = "2" ]; then
-	sudo chown root:root /var/lib/sshd -R
+	sudo chown root:root /mnt/var/lib/sshd -R
 	echo "sshd user and group were changed to root."
 else
 	echo "sshd user and group were correct."
