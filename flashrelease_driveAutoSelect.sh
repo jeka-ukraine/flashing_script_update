@@ -40,19 +40,6 @@ fi
 
 #verification for 0.1.0 instead of current version
 ZERO_VERSION='0.1.0'
-#if ! [ -f "$prefix/MFA2_VIP_C5_B3_fls_img.srec" "$vip_output/" ];
-echo "debug test of VIP file exsting"
-echo "file exist"
-if [[ -f "$prefix/MFA2_VIP_C5_B3_fls_img.srec" ]]; then
-echo "file exist status: $?"
-fi
-
-echo "file NO exist"
-if [[ ! -f "$prefix/MFA2_VIP_C5_B3_fls_img.srec" ]]; then
-echo "file NO exist status: $?"
-echo "$prefix/MFA2_VIP_C5_B3_fls_img.srec"
-fi
-
 if [[ ! -f "$prefix/MFA2_VIP_C5_B3_fls_img.srec" ]];
 then
         prefix="$output_dir/Tools/Autogrator/resources/cards/Mfa2H2RH850Firmwarev${ZERO_VERSION}/master/lin_opt/BIN/MFA2_C5_B3"
@@ -75,7 +62,7 @@ sudo ./Autogrator.sh deploy --cardName Mfa2M2Emmcv${version} --device /dev/$DRIV
 echo ""
 echo "============================"
 echo "Network setup; User and Group of 'sshd' verification:"
-sudo mount -t ext4 /dev/'$DRIVE_NAME'8  /mnt/
+sudo mount -t ext4 /dev/$DRIVE_NAME\8  /mnt/
 echo "auto eth0    
 iface eth0 inet dhcp" >> /mnt/etc/network/interfaces 
 
@@ -89,7 +76,7 @@ else
 fi
 
 sync
-sudo umount /dev/'$DRIVE_NAME'8
+sudo umount /dev/$DRIVE_NAME\8
 echo "Network setup; User and Group of 'sshd' verification are done."
 echo "============================"
 
@@ -97,7 +84,7 @@ echo "============================"
 echo ""
 echo "============================"
 echo "Adding scopes to 'default.sco'"
-sudo mount -t ext4 /dev/'$DRIVE_NAME'9  /mnt/
+sudo mount -t ext4 /dev/$DRIVE_NAME\9  /mnt/
 
 echo "VERSION 1.0
 
@@ -110,7 +97,7 @@ UICockpit.HAL_Tuner.* WARN
 UICockpit.HAL_RUI.* DEBUG
 UICockpit.HAL_infotainment.TimeAndDateServiceDelegate WARN" >> /mnt/etc/trace/default.sco 
 sync
-sudo umount /dev/'$DRIVE_NAME'9
+sudo umount /dev/$DRIVE_NAME\9
 echo "Scopes added."
 echo "============================"
 
