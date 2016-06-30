@@ -22,6 +22,39 @@ echo "Exracting to $output_dir"
 mkdir -p $output_dir
 sudo tar -xf $archive --directory $output_dir
 
+###
+###
+###
+# cat Daily-5.1.1427/Tools/Autogrator/resources/cards/Mfa2M2Emmcv5.1.1427/master/lin_opt/etc/trace/default.sco
+# cat Daily-5.1.1427/Tools/Autogrator/resources/cards/Mfa2M2Emmcv5.1.1427/master/lin_root/etc/network/interfaces
+###
+###
+###
+echo "============================ >>>"
+echo "Network configuration is started."
+echo "auto eth0    
+iface eth0 inet dhcp" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv5.1.1427/master/lin_root/etc/network/interfaces
+echo "Network configuration is finished."
+echo "============================ <<<"
+echo ""
+echo ""
+echo ""
+echo ""
+echo "============================ >>>"
+echo "Trace scopes configuration is started."
+echo "auto eth0    
+iface eth0 inet dhcp" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv5.1.1427/master/lin_opt/etc/trace/default.sco
+echo "Trace scopes configuration is finished."
+echo "============================ <<<"
+
+
+
+
+echo ""
+echo ""
+echo ""
+echo ""
+echo "============================ >>>"
 echo "Copy VIP files to $vip_output"
 
 ###modified
@@ -32,24 +65,63 @@ VAN_regex='VANS'
 if [[ $1 =~ $VAN_regex ]];
 then
         prefix="$output_dir/Tools/Autogrator/resources/cards/Mfa2H2RH850Firmwarev${version}/master/lin_opt/BIN/MFA2_VANS_B3"
-        #echo "VANs prefix"
+        echo "VANs prefix is set."
 else
         prefix="$output_dir/Tools/Autogrator/resources/cards/Mfa2H2RH850Firmwarev${version}/master/lin_opt/BIN/MFA2_C5_B3"
-        #echo "CARs prefix"
+        echo "CARs prefix is set."
 fi
 
 #verification for 0.1.0 instead of current version
 ZERO_VERSION='0.1.0'
 if [[ ! -f "$prefix/MFA2_VIP_C5_B3_fls_img.srec" ]];
 then
+        echo "folder with 0.1.0 was found. Path will be fixed >>>"
         prefix="$output_dir/Tools/Autogrator/resources/cards/Mfa2H2RH850Firmwarev${ZERO_VERSION}/master/lin_opt/BIN/MFA2_C5_B3"
+
 fi
 
-####################
 
 
+#copy VIP files
 cp "$prefix/MFA2_VIP_C5_B3_fls_img.srec" "$vip_output/"
 cp "$prefix/globalValidFlag.hex" "$vip_output/"
+
+
+echo "VIP files are successfully copied "
+echo "============================ <<<"
+
+
+
+
+
+
+# #check user and groop of sshd
+# $SSHD_ROOT_NUMBER=$(ls -l /var/lib/ | grep sshd | grep -c sshd)
+# if ! [ "$SSHD_ROOT_NUMBER" = "2" ]; then
+# 	sudo chown root:root /mnt/var/lib/sshd -R
+# 	echo "sshd user and group were changed to root."
+# else
+# 	echo "sshd user and group were correct."
+# fi
+
+# sync
+# sudo umount /dev/$DRIVE_NAME\8
+# echo "Network setup; User and Group of 'sshd' verification are done."
+# echo "============================"
+
+
+
+
+
+
+
+
+
+echo ""
+echo ""
+echo ""
+echo ""
+echo "============================ >>>"
 
 echo "Start Autogrator"
 
@@ -58,48 +130,17 @@ cd "$output_dir/Tools/Autogrator"
 ###modified
 sudo ./Autogrator.sh deploy --cardName Mfa2M2Emmcv${version} --device /dev/$DRIVE_NAME
 
-###added
-echo ""
-echo "============================"
-echo "Network setup; User and Group of 'sshd' verification:"
-sudo mount -t ext4 /dev/$DRIVE_NAME\8  /mnt/
-echo "auto eth0    
-iface eth0 inet dhcp" >> /mnt/etc/network/interfaces 
 
-#check user and groop of sshd
-$SSHD_ROOT_NUMBER=$(ls -l /var/lib/ | grep sshd | grep -c sshd)
-if ! [ "$SSHD_ROOT_NUMBER" = "2" ]; then
-	sudo chown root:root /mnt/var/lib/sshd -R
-	echo "sshd user and group were changed to root."
-else
-	echo "sshd user and group were correct."
-fi
+echo "VIP files are successfully copied "
+echo "============================ <<<"
 
-sync
-sudo umount /dev/$DRIVE_NAME\8
-echo "Network setup; User and Group of 'sshd' verification are done."
-echo "============================"
 
-#adding scopes
-echo ""
-echo "============================"
-echo "Adding scopes to 'default.sco'"
-sudo mount -t ext4 /dev/$DRIVE_NAME\9  /mnt/
 
-echo "VERSION 1.0
 
-UICockpit.* INFO
-UICockpitServerIVI.* DEBUG
-UIServerProcessIVI.* INFO
 
-UICockpit.HAL_Tuner.* WARN
 
-UICockpit.HAL_RUI.* DEBUG
-UICockpit.HAL_infotainment.TimeAndDateServiceDelegate WARN" >> /mnt/etc/trace/default.sco 
-sync
-sudo umount /dev/$DRIVE_NAME\9
-echo "Scopes added."
-echo "============================"
+
+
 
 
 
