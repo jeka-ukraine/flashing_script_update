@@ -32,8 +32,9 @@ sudo tar -xf $archive --directory $output_dir
 ###
 echo "============================ >>>"
 echo "Network configuration is started."
-echo "auto eth0    
-iface eth0 inet dhcp" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv5.1.1427/master/lin_root/etc/network/interfaces
+sudo chmod a+w  $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/network/interfaces
+sudo echo "auto eth0    
+iface eth0 inet dhcp" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/network/interfaces
 echo "Network configuration is finished."
 echo "============================ <<<"
 echo ""
@@ -42,8 +43,9 @@ echo ""
 echo ""
 echo "============================ >>>"
 echo "Trace scopes configuration is started."
-echo "auto eth0    
-iface eth0 inet dhcp" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv5.1.1427/master/lin_opt/etc/trace/default.sco
+sudo chmod a+w  $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_opt/etc/trace/default.sco
+sudo echo "auto eth0    
+iface eth0 inet dhcp" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_opt/etc/trace/default.sco
 echo "Trace scopes configuration is finished."
 echo "============================ <<<"
 
@@ -123,7 +125,7 @@ echo ""
 echo ""
 echo "============================ >>>"
 
-echo "Start Autogrator"
+echo "Start Autogrator."
 
 cd "$output_dir/Tools/Autogrator"
 
@@ -131,7 +133,7 @@ cd "$output_dir/Tools/Autogrator"
 sudo ./Autogrator.sh deploy --cardName Mfa2M2Emmcv${version} --device /dev/$DRIVE_NAME
 
 
-echo "VIP files are successfully copied "
+echo "Autogrator finished successfully."
 echo "============================ <<<"
 
 
