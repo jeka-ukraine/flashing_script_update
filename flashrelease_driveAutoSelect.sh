@@ -70,6 +70,19 @@ echo "============================ <<<"
 
 
 
+
+echo ""
+echo ""
+echo ""
+echo ""
+echo "============================ >>>"
+echo "Starting change of Linux filesystem (from 'ro' to 'rw')"
+sed -i '' "s/ro/rw/g" Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/fstab
+echo "Linux filesystem is finished."
+echo "============================ <<<"
+
+
+
 echo ""
 echo ""
 echo ""
