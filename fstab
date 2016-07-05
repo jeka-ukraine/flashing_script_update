@@ -1,0 +1,3 @@
+/dev/mosx-block0 / auto rw,noatime 0 0
+/dev/mosx-block1 /opt/visteon auto rw,noatime 0 0
+/dev/mosx-block2 /var/visteon auto rw,noatime 0 0

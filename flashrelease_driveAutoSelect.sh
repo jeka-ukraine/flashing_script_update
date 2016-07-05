@@ -33,8 +33,13 @@ sudo tar -xf $archive --directory $output_dir
 echo "============================ >>>"
 echo "Network configuration is started."
 sudo chmod a+w  $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/network/interfaces
-sudo echo "auto eth0    
-iface eth0 inet dhcp" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/network/interfaces
+sudo echo "
+
+auto eth0    
+iface eth0 inet dhcp
+
+" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/network/interfaces
+
 echo "Network configuration is finished."
 echo "============================ <<<"
 echo ""
@@ -44,8 +49,21 @@ echo ""
 echo "============================ >>>"
 echo "Trace scopes configuration is started."
 sudo chmod a+w  $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_opt/etc/trace/default.sco
-sudo echo "auto eth0    
-iface eth0 inet dhcp" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_opt/etc/trace/default.sco
+sudo echo "
+
+VERSION 1.0
+
+UICockpit.* INFO
+UICockpitServerIVI.* DEBUG
+UIServerProcessIVI.* INFO
+
+UICockpit.HAL_Tuner.* WARN
+
+UICockpit.HAL_RUI.* DEBUG
+UICockpit.HAL_infotainment.TimeAndDateServiceDelegate WARN
+
+" >> $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_opt/etc/trace/default.sco
+
 echo "Trace scopes configuration is finished."
 echo "============================ <<<"
 
