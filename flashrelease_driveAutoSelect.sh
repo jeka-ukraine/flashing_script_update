@@ -7,14 +7,16 @@ archive=$1
 vip_output='/media/sf_VM_Share/'
 
 ###added
-DRIVE_NAME=$(lsblk | grep -o "sd\w11" | grep -P -o --colour "[a-z]{3}")
-
-if [[ $DRIVE_NAME = "" ]]; then
-	echo "Please connect target as USB drive and restart this bash script."
-	echo "Flashing is canceled."
-fi
-
+ DRIVE_NAME=$(lsblk | grep -o "sd\w11" | grep -P -o --colour "[a-z]{3}")
+echo ""
+echo "" 
+echo "" 
+echo "" 
 echo "Target drive is found: $DRIVE_NAME"
+echo "" 
+echo "" 
+echo "" 
+echo "" 
 
 if [[ $(basename "$archive") =~ $regex ]]; then
 	reltype=${BASH_REMATCH[1]}
@@ -84,8 +86,9 @@ echo ""
 echo ""
 echo "============================ >>>"
 echo "Starting change of Linux filesystem (from 'ro' to 'rw')"
-sed -i '' "s/ro/rw/g" Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/fstab
-echo "Linux filesystem is finished."
+sudo chmod a+w $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/fstab
+sudo sed -i "s/ro/rw/g" $output_dir/Tools/Autogrator/resources/cards/Mfa2M2Emmcv${version}/master/lin_root/etc/fstab
+echo "Linux filesystem is changed."
 echo "============================ <<<"
 
 
