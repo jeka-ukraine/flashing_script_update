@@ -9,6 +9,13 @@ vip_output='/media/sf_VM_Share/'
 ###added
 DRIVE_NAME=$(lsblk | grep -o "sd\w11" | grep -P -o --colour "[a-z]{3}")
 
+if [[ $DRIVE_NAME = "" ]]; then
+	echo "Please connect target as USB drive and restart this bash script."
+	echo "Flashing is canceled."
+fi
+
+echo "Target drive is found: $DRIVE_NAME"
+
 if [[ $(basename "$archive") =~ $regex ]]; then
 	reltype=${BASH_REMATCH[1]}
 	version=${BASH_REMATCH[2]}
